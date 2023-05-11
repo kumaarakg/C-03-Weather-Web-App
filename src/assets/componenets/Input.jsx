@@ -2,12 +2,12 @@ import Axios from 'axios'
 
 
 const apiID="a8659a997d9dbe2120eaf50ca4347415";
-
+const query="London";
 
 
 const Input = () => {
     const getWeather=() =>{
-        fetch("http://api.weatherapi.com/v1/forecast.json?key=cd8187028e6f488182a52355231105&q=London&days=1&aqi=yes&alerts=yes")
+        fetch("http://api.weatherapi.com/v1/forecast.json?key=cd8187028e6f488182a52355231105&q="+query+"&days=1&aqi=yes&alerts=yes")
         .then((response)=> response.json())
         .then((json)=> console.log(json))
     
