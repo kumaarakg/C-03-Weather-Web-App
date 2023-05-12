@@ -13,7 +13,7 @@ const Input = () => {
             <form>
                 <input
                     type="text"
-                    value={name}
+                    value={location}
                     className={styles.textbox}
                     placeholder="Enter the Location..."
                     onChange={(e) => setLocation(e.target.value)}
