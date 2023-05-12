@@ -11,7 +11,6 @@ const Logo = () => {
         <img src={logo_no_bg} className='w-[40%] p-8' />
         <div className="h-4 rounded-lg w-[20%] bg-primary" />
       </div>
-      <button className="px-3 py-2 m-2 bg-transparent border-2 border-secondary rounded-md text-2xl text-offWhite hover:border-slate-700 transition-all hover:translate-x-0.5 hover:-translate-y-0.5 delay-100 ease-in-out">Button</button>
     </div>
   )
 }
