@@ -2,13 +2,28 @@ import { useState } from "react";
 import styles from "../../styles";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import weather from "../lotties/weather.json"
+import Linechart from "./charts/linechart";
+import JSONPretty from "react-json-pretty";
 const Input = () => {
     const [location, setLocation] = useState("");
-    const [data, setData] = useState("");
+    // const [data, setData] = useState("");
+    const [hourlyData, setHourlyData] = useState("");
+    const[CurrentData, setCurrentData]=useState("");
     const getWeather = () => {
         fetch("https://api.weatherapi.com/v1/forecast.json?key=cd8187028e6f488182a52355231105&q=" + location + "&days=1&aqi=yes&alerts=yes")
             .then((response) => response.json())
-            .then((json) => setData(json))
+            .then((json) => {
+                let temp = json.forecast.forecastday[0].hour
+                setHourlyData({
+                    labels: temp.map((vals) => vals.time),
+                    datasets: [{
+                        label: "Temperature",
+                        data: temp.map((vals) => vals.temp_c)
+                    }]
+                })
+                setCurrentData({json})
+
+            })
     }
     return (
         <>
@@ -31,7 +46,7 @@ const Input = () => {
                             autoplay
                             loop
                             src={weather}
-                            style={{ height: "512px"}}
+                            style={{ height: "512px" }}
                         >
                             <Controls
                                 visible={false}
@@ -41,10 +56,18 @@ const Input = () => {
                     </div>
                 </div>
             </div>
+            <div className="flex flex-wrap justify-center">
+            <div className="basis-full flex items-center justify-center md:basis-7/12">
+                
+                
+            </div>
+
+            </div>
+            <div>
+            <p className="text-offWhite">{JSON.stringify(CurrentData.current)}</p>
+            </div>
             {
-                data != "" && (
-                    <p className="text-offWhite"> {JSON.stringify(data)} </p>
-                )
+                hourlyData != "" && <Linechart chartdata={hourlyData}/>
             }
         </>
 
