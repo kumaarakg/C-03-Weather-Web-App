@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "../../styles";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import weather from "../lotties/weather.json"
-import Linechart from "./charts/linechart";
+import Linechart from "./charts/Linechart";
 import JSONPretty from "react-json-pretty";
 const Input = () => {
     const [location, setLocation] = useState("");
