@@ -27,7 +27,11 @@ const Input = () => {
                     name: json.location.name,
                     weatherType: json.current.condition.text,
                     temperature: json.current.temp_c,
-                    icon: json.current.condition.icon
+                    icon: json.current.condition.icon,
+                    wind: json.current.wind_kph,
+                    humidity: json.current.humidity,
+                    cloud: json.current.cloud
+
                 })
 
             })
@@ -86,6 +90,9 @@ const Input = () => {
                  temperature={CurrentData.temperature}
                  weatherType={CurrentData.weatherType}
                  icon={CurrentData.icon}
+                 wind={CurrentData.wind}
+                 humidity={CurrentData.humidity}
+                 cloud={CurrentData.cloud}
       
                 />
             }
