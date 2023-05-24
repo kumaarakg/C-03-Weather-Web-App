@@ -5,8 +5,9 @@ function Linechart({ chartdata }) {
     <div>
       <Line 
         data={chartdata}
-        height={400}
-        width={600}
+        
+
+        
         options={{
             maintainAspectRatio: false,
         }}

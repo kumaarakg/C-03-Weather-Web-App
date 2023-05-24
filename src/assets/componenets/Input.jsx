@@ -4,16 +4,22 @@ import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import weather from "../lotties/weather.json"
 import Linechart from "./charts/Linechart";
 import JSONPretty from "react-json-pretty";
+import Weathercurrent from "./current";
 const Input = () => {
     const [location, setLocation] = useState("");
-    // const [data, setData] = useState("");
+    
     const [hourlyData, setHourlyData] = useState("");
     const[CurrentData, setCurrentData]=useState("");
+    let city,temperature,weatherType,icon;
     const getWeather = () => {
         fetch("https://api.weatherapi.com/v1/forecast.json?key=cd8187028e6f488182a52355231105&q=" + location + "&days=1&aqi=yes&alerts=yes")
             .then((response) => response.json())
             .then((json) => {
                 let temp = json.forecast.forecastday[0].hour
+                city=json.location.name
+                temperature=json.current.temp_c
+                weatherType=json.current.condition.text
+                icon=json.current.condition.icon
                 setHourlyData({
                     labels: temp.map((vals) => vals.time),
                     datasets: [{
@@ -60,15 +66,31 @@ const Input = () => {
             <div className="basis-full flex items-center justify-center md:basis-7/12">
                 
                 
-            </div>
+           
 
-            </div>
-            <div>
-            <p className="text-offWhite">{JSON.stringify(CurrentData.current)}</p>
-            </div>
+           </div>
+           
+
+           </div>
+            <div className="flex flex-wrap justify-cente">
             {
+                
                 hourlyData != "" && <Linechart chartdata={hourlyData}/>
             }
+            {
+                
+                CurrentData != "" && <Weathercurrent 
+                
+                 city={city}
+                 temperature={temperature}
+                 weatherType={weatherType}
+                 icon={icon}
+      
+                />
+            }
+            </div>
+           
+            
         </>
 
     )
