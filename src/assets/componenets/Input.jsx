@@ -15,7 +15,7 @@ const Input = () => {
         fetch("https://api.weatherapi.com/v1/forecast.json?key=cd8187028e6f488182a52355231105&q=" + location + "&days=1&aqi=yes&alerts=yes")
             .then((response) => response.json())
             .then((json) => {
-                
+                let temp = json.forecast.forecastday[0].hour
                 setHourlyData({
                     labels: temp.map((vals) => vals.time),
                     datasets: [{
