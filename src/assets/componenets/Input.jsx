@@ -15,11 +15,7 @@ const Input = () => {
         fetch("https://api.weatherapi.com/v1/forecast.json?key=cd8187028e6f488182a52355231105&q=" + location + "&days=1&aqi=yes&alerts=yes")
             .then((response) => response.json())
             .then((json) => {
-                let temp = json.forecast.forecastday[0].hour
-                city=json.location.name
-                temperature=json.current.temp_c
-                weatherType=json.current.condition.text
-                icon=json.current.condition.icon
+                
                 setHourlyData({
                     labels: temp.map((vals) => vals.time),
                     datasets: [{
@@ -27,7 +23,12 @@ const Input = () => {
                         data: temp.map((vals) => vals.temp_c)
                     }]
                 })
-                setCurrentData({json})
+                setCurrentData({
+                    name: json.location.name,
+                    weatherType: json.current.condition.text,
+                    temperature: json.current.temp_c,
+                    icon: json.current.condition.icon
+                })
 
             })
     }
@@ -81,10 +82,10 @@ const Input = () => {
                 
                 CurrentData != "" && <Weathercurrent 
                 
-                 city={city}
-                 temperature={temperature}
-                 weatherType={weatherType}
-                 icon={icon}
+                 city={CurrentData.name}
+                 temperature={CurrentData.temperature}
+                 weatherType={CurrentData.weatherType}
+                 icon={CurrentData.icon}
       
                 />
             }
