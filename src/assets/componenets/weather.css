@@ -1,8 +1,12 @@
 
 .weather-container {
-    background-color: #f5f5f5;
+    background-color: rgba(255,255,255,0.2);
     padding: 20px;
     border-radius: 5px;
+    color: #5B8FB9;
+    backdrop-filter: blur(5px);
+    border-color: #F4EEE0;
+   
   }
   
   .weather-container h2 {
@@ -31,4 +35,8 @@
   .weather-details .weather-type {
     font-size: 18px;
     margin-top: 5px;
+  }
+  .city{
+    font-weight: bold;
+    font-weight: 30px;
   }

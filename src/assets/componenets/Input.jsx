@@ -36,6 +36,9 @@ const Input = () => {
 
             })
     }
+    const style = {
+        padding: 20
+      };
     return (
         <>
             <div className="flex flex-wrap justify-center">
@@ -77,11 +80,14 @@ const Input = () => {
            
 
            </div>
-            <div className="flex flex-wrap justify-cente">
+            <div className="flex ">
+                <div className="basis-3/5" style={style}>
             {
                 
                 hourlyData != "" && <Linechart chartdata={hourlyData}/>
             }
+               </div>
+               <div className="basis-2/5" style={style}>
             {
                 
                 CurrentData != "" && <Weathercurrent 
@@ -96,6 +102,7 @@ const Input = () => {
       
                 />
             }
+            </div>
             </div>
            
             
